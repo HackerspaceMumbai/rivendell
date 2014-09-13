@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contact Sync</title>
+<script src="jquery-2.1.0.min.js"></script>
+</head>
+<body>
+	<button id="user_create">Add user</button>
+	<button id="delete-user">Delete User</button>
+	<button id="user_retrieve">Retrieve user</button>
+	<button id="login">login</button>
+	<button id="logout">logout</button>
+	<button id="create_contact">Create driver</button>	
+	<button id="contact_retrieve">Retrieve trips on 14th sept</button>
+	<button id="cross_domain_test_add_user">cross_domain_test_add_user</button>
+	<button id="cross_domain_test_retrieve_user">cross_domain_test_retrieve_user</button>
+	
+	<script>
+	$('#user_create').click(function() { 
+		var data = "{\"email\":\"email@email.com\", \"password\":\"password\", \"firstname\":\"sahil\", \"lastname\":\"gandhi\",\"phone\":\"123456789\", \"country\":\"India\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'create', data:data},
+			/* success: 	function(code) {
+						alert(code.responseText);
+			},  */
+			statusCode : {
+                201 : function(data, textStatus, jqXHR) {
+
+                }
+
+            },
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error: ' + textStatus + ': ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	$('#delete-user').click(function() {
+		var data = "{\"email\":\"email@contactsync.com\", \"password\":\"password\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'delete', data: data},
+
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	$('#user_retrieve').click(function() {
+		var data = "{\"email\":\"email@contactsync.com\", \"password\":\"password\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'get', data: data},
+	        mimeType: 'application/json',
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	$('#login').click(function() {
+		var data = "{\"email\":\"email@email.com\", \"password\":\"password\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'login', data:data},
+
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	$('#logout').click(function() {
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'logout'},
+
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+
+	$('#create_contact').click(function() { 
+		var data = "{\"origin\":\"19.0782254,72.9073242\", \"destination\":\"19.022393,72.855665\",\"day\":\"14\",\"month\":\"8\",\"year\":\"2014\",\"hour\":\"8\",\"min\":\"0\",\"sec\":\"00\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"trip",
+			data: 		{actn:'create', data:data},
+			statusCode : {
+                201 : function(data, textStatus, jqXHR) {
+
+                }
+
+            },
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error: ' + textStatus + ': ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});	
+	$('#contact_retrieve').click(function() {
+		var data = "{\"day\":\"14\",\"month\":\"8\",\"year\":\"2014\",\"hour\":\"00\",\"min\":\"00\",\"sec\":\"00\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"driver",
+			data: 		{actn:'get', data:data},
+	        mimeType: 'application/json',
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+
+	$('#cross_domain_test_add_user').click(function() { 
+		var data = "{\"email\":\"email@localhosttowebserver.com\", \"password\":\"password\", \"firstname\":\"cross\", \"lastname\":\"domain\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"https://contactsync-leo.appspot.com/user",
+			data: 		{actn:'create', data:data},
+			/* success: 	function(code) {
+						alert(code.responseText);
+			},  */
+			statusCode : {
+                201 : function(data, textStatus, jqXHR) {
+
+                }
+
+            },
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error: ' + textStatus + ': ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	$('#cross_domain_test_retrieve_user').click(function() {
+		var data = "{\"email\":\"email@localhosttowebserver.com\", \"password\":\"password\"}";
+		$.ajax({
+			type: 		"post",
+			url: 		"https://contactsync-leo.appspot.com/user",
+			data: 		{actn:'get', data: data},
+	        mimeType: 'application/json',
+			success: 	function(data) {
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+                alert('error:- ' + textStatus + ' ; ' + errorThrown);
+            }
+		}).complete(function(){  });
+	});
+	
+	</script>
+</body>
+</html>
