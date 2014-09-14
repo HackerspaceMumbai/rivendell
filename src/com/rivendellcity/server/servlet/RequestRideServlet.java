@@ -1,6 +1,8 @@
 package com.rivendellcity.server.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +49,49 @@ public class RequestRideServlet extends HttpServlet {
 			}  else {
 				resp.sendError(401, "user is not loggid in");
 			}
+		} else if(action.equals("get_req_messages")){
+			
+			HttpSession session = req.getSession(false);
+			if(session.getAttribute("user") != null){
+				UserResource user = (UserResource) session.getAttribute("user");
+				String json = new Gson().toJson(user);
+				JsonObject jsonobj = new Gson().fromJson(json, JsonObject.class);
+				String email = jsonobj.get(Constants.EMAIL).getAsString();
+				
+				ArrayList<RequestRideResource> list = new RequestRideResource().get_req_messages(email);
+				String result = new Gson().toJson(list);
+				resp.setContentType("application/json; charset=UTF-8");			
+				PrintWriter out = resp.getWriter();
+				out.print(result);
+				out.flush();
+				
+			}  else {
+				resp.sendError(401, "user is not loggid in");
+			}
+			
+		}else if(action.equals("get_confirm_messages")){
+			
+			HttpSession session = req.getSession(false);
+			if(session.getAttribute("user") != null){
+				UserResource user = (UserResource) session.getAttribute("user");
+				String json = new Gson().toJson(user);
+				JsonObject jsonobj = new Gson().fromJson(json, JsonObject.class);
+				String email = jsonobj.get(Constants.EMAIL).getAsString();
+				
+				ArrayList<RequestRideResource> list = new RequestRideResource().get_confirm_messages(email);
+				String result = new Gson().toJson(list);
+				resp.setContentType("application/json; charset=UTF-8");			
+				PrintWriter out = resp.getWriter();
+				out.print(result);
+				out.flush();
+				
+			}  else {
+				resp.sendError(401, "user is not loggid in");
+			}
+			
 		}
+
+		
 	
 	}
 }

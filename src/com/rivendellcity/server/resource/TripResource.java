@@ -99,4 +99,5 @@ public class TripResource extends Trip {
 		//TODO: Add Notification code.. for confirmed rider and share details
 		
 	}
+	
 }

@@ -1,6 +1,9 @@
 package com.rivendellcity.server.resource;
 
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -13,6 +16,7 @@ import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.gson.Gson;
 import com.rivendellcity.Constants;
 import com.rivendellcity.bean.RequestRide;
 
@@ -73,5 +77,49 @@ public class RequestRideResource extends RequestRide {
 		}
 		// don't add notification code.. already added in add_rider()
 	}
+	
+	public ArrayList<RequestRideResource> get_req_messages(String useremail){
+		ArrayList<RequestRideResource> list = new ArrayList<RequestRideResource>();
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Key driver = KeyFactory.createKey(Constants.USER_ENTITY, useremail);
+		
+		Filter driver_equal = new FilterPredicate(Constants.DRIVERID, FilterOperator.EQUAL, driver);
+		Filter not_accepted = new FilterPredicate(Constants.IS_ACCEPTED, FilterOperator.EQUAL, false);
+		Filter filter = CompositeFilterOperator.and(driver_equal, not_accepted);
+		Query q = new Query(Constants.REQUEST_RIDE_ENTITY).setFilter(filter);
+		PreparedQuery pq = datastore.prepare(q);
+		for (Entity result : pq.asIterable()) {
+			Map<String, Object> map = result.getProperties();
+			String json = new Gson().toJson(map);
+			RequestRideResource r = new Gson().fromJson(json, RequestRideResource.class);
+			list.add(r);
+		}
+		
+		return list;
+		
+	}
+	
+	
+	public ArrayList<RequestRideResource> get_confirm_messages(String useremail){
+		ArrayList<RequestRideResource> list = new ArrayList<RequestRideResource>();
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Key driver = KeyFactory.createKey(Constants.USER_ENTITY, useremail);
+		
+		Filter rider_equal = new FilterPredicate(Constants.RIDERID, FilterOperator.EQUAL, driver);
+		Filter not_accepted = new FilterPredicate(Constants.IS_ACCEPTED, FilterOperator.EQUAL, true);
+		Filter filter = CompositeFilterOperator.and(rider_equal, not_accepted);
+		Query q = new Query(Constants.REQUEST_RIDE_ENTITY).setFilter(filter);
+		PreparedQuery pq = datastore.prepare(q);
+		for (Entity result : pq.asIterable()) {
+			Map<String, Object> map = result.getProperties();
+			String json = new Gson().toJson(map);
+			RequestRideResource r = new Gson().fromJson(json, RequestRideResource.class);
+			list.add(r);
+		}
+		
+		return list;
+		
+	}
+	
 
 }

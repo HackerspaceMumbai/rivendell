@@ -77,18 +77,21 @@
   <script src="jquery-2.1.0.min.js"></script>
   
   <script type="text/javascript">
-  function send_req(tripid, driverid){
-	  
-	  var data = '{tripid:'+tripid+',driverid:'+driverid+'}'; 
-	  $.ajax({
-		  type: "post",
-		  url: "request",
-		  data: 		{actn:'create', data:data},
-		  mimeType: 'application/json',
-		  success: 	function(data) {}, 
-		  
-	  	}).complete(function(){  });
-	  }
+  
+  $('#list22').delegate('.req', 'click', function() {
+				var var1 = $(this).attr("tripid");
+				var var2 = $(this).attr("driverid");
+				var data = '{driverid:'+var1+',tripid:'+var2+'}'
+				$.ajax({
+					  type: "post",
+					  url: "request",
+					  data: 		{actn:'create', data:data},
+					  mimeType: 'application/json',
+					  success: 	function(data) {}, 
+					  
+				  	}).complete(function(){  });
+
+	});
   
   $('#get_pool_list').click(function() {
 	  var date = $('#date1').val(); 
@@ -119,7 +122,7 @@
 								  ti =data[i].tripid;
 								  di = data[i].driverid;
 														  
-						    $('#list22').append('<tr><td>'+data[i].time+'</td><td>'+data[i].origin_string+'</td><td>'+data[i].destination_string+'</td><td><a href="#" onClick="send_req('+ti+','+di+');">Request driver for a ride</a></td></tr>')
+						    $('#list22').append('<tr><td>'+data[i].time+'</td><td>'+data[i].origin_string+'</td><td>'+data[i].destination_string+'</td><td><a href="#" class="req" tripid='+ti+' driverid='+di+'>Request driver for a ride</a></td></tr>')
 						    i = i+1;
 						  });
 						});
