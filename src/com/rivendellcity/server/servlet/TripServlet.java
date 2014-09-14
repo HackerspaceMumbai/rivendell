@@ -32,6 +32,7 @@ public class TripServlet extends HttpServlet {
 			// date
 			int day = jsonobj.get("day").getAsInt();
 			int month = jsonobj.get("month").getAsInt();
+			month--;
 			int year = jsonobj.get("year").getAsInt();
 			int hour = jsonobj.get("hour").getAsInt();
 			int min = jsonobj.get("min").getAsInt();

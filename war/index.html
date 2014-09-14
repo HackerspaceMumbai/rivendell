@@ -1,27 +1,164 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
-
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
-  </head>
+	<head>
+		<title>Greenify</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="myStyles.css">
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrollgress.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="landing">
 
-  <body>
-    <h1>Hello App Engine!</h1>
+		<!-- Header -->
+			<header id="header" class="alt">
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="profile.html" class="button">Log in</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+			<div id ="banner">
+				<h2>Greenify</h2>
+				<p>An initiative to make Mumbai green</p>
+				<ul class="actions">
+					<li><a href="../RivendellCity/signUp.html" class="button special">Sign Up</a></li>
+				</ul>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="container">			
+				<section class="box special features">
+					<div class="features-row">
+						<section>
+							<span class="icon major fa-bolt accent2"></span>
+							<h3 style="color: black">Car Pool</h3>
+							<p style="color: black">Car Pool along with your fellow citizens and reduce your carbon footprint!</p>
+						</section>
+						<section>
+							<span class="icon major fa-area-chart accent3"></span>
+							<h3 style="color: black">Events</h3>
+							<p style="color: black">Organise a green-event in your city and invite your fellow citizens</p>
+						</section>
+					</div>
+					<div class="features-row">
+						<section>
+							<span class="icon major fa-cloud accent4"></span>
+							<h3 style="color: black">Green Deed</h3>
+							<p style="color: black">Do something for your environment and earn "Green points"</p>
+						</section>
+						<section>
+							<span class="icon major fa-lock accent5"></span>
+							<h3 style="color: black">Share</h3>
+							<p style="color: black">Invite your friends and share your Green Score with them! </p>
+						</section>
+					</div>
+				</section>
+				</section>
+			
+		<!-- CTA -->
+			<section id="cta">
+				
+				<h2>Sign up for beta access</h2>
+				<p></p>
+				
+				<form>
+					<div class="row uniform half collapse-at-2">
+						<div class="8u">
+							<input type="email" name="email" id="email" placeholder="Email Address" />
+						</div>
+						<div class="4u">
+							<input type="submit" value="Sign Up" class="fit" />
+						</div>
+					</div>
+				</form>
+				
+			</section>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Copyright #hack4good 06</li><li class="pull right">Product by Tejash and Sahil</li>
+				</ul>
+			</footer>
+
+			<div id="openModal" class="modalDialog">
 	
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href="rivendell">Rivendell</a></td>
-      </tr>
-    </table>
-  </body>
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h2>Sign In</h2>
+		<div class="col-md-5 col-md-offset-3">
+                    <form class="form-horizontal">
+					  <div class="form-group">
+                        <label for="inputEmail" class="col-sm-5 control-label">Email</label>
+						<div class="col-sm-10">
+                          <input type="email" class="form-control" id="email1" name="email">
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <label for="inputPassword" class="col-sm-5 control-label">Password</label>
+						<div class="col-sm-10">
+                          <input type="password" class="form-control" id="password1" name="password">
+                        </div>
+						<br>
+                      </div>
+					  <div class="form-group">
+						<div class="col-sm-10">
+                           <button class="btn btn-success" id="login1">Log In</button>
+                        </div>
+                      </div>
+					  </form>
+					  </div>
+		</div>
+</div>
+	</body>
+	<script type="text/javascript">
+	$('#login1').click(function() {
+		var email = $('#email1').val();
+		/* alert(email); */
+		var pass = $('#password1').val();
+		var data = '{"email":'+email+', "password":'+pass+'}';
+		$.ajax({
+			type: 		"post",
+			url: 		"user",
+			data: 		{actn:'login', data:data},
+
+			success: 	function(data) {
+			}, 
+				window.location = "/profile.html";
+            }
+		}).complete(function(){  });
+	});
+
+	</script>
+	
 </html>

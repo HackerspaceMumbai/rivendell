@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="description" content="description of your site">
+    <meta name="author" content="author of the site">
+    <title>Greenify Mumbai - New Event</title>
+	<link rel="icon" type="image/png" href="./img/favicon.jpg">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+  <div id="in-nav" style="height:80px">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <ul class="pull-right">
+              <li style="font-size:20px"><a href="../html5up-alpha/index.html"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+            </ul>
+              <h1 class="namePlate" style="color:green"><strong>New Event</strong></h1></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="in-sub-nav">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <ul>
+              <li><a href="profile.html"><i class="batch home"></i><br>Profile</a></li>
+              <li><span class="label label-important pull-right">08</span><a href="events.html"><i class="batch stream"></i><br>Events</a></li>
+              <!-- <li><span class="label label-important pull-right">04</span><a href="messages.html"><i class="batch plane"></i><br>Messages</a></li> -->
+              <li><a href="carPoolJoin.html"><i class="batch forms"></i><br>Join a car pool</a></li>
+              <!-- <li><a href="users.html"><i class="batch users"></i><br>Users</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <div class="page-container">
+	<div class="container">
+  		<div class="row">
+		  	<div class="span12">
+		  		<table id="list21" class="table table-striped sorted">	
+		  			
+		  			
+		  		</table>
+		  	</div>
+		  </div>
+    </div>
+    
+  </div>
+</div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <p class="pull-right">Product by Tejash and Sahil</p>
+            <p>&copy; Copyright #hack4good 06</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="jquery-2.1.0.min.js"></script>
+  <script>
+  
+	$.ajax({
+		type: 		"post",
+		url: 		"event",
+		data: 		{actn:'get'},
+        mimeType: 	'application/json',
+		success: 	function(data) {
+						}, 
+		statusCode : {
+            200 : function(data, textStatus, jqXHR) {
+				/* alert("200: " + data) */
+				var table = "<tr><th>Date</th><th>Venue</th><th>Category</th></tr>";
+				$('#list21').append(table);
+				$.each(data, function(k,v) {
+					/* <tr><td></td></tr> */
+					/* alert("data of 0 "+data[0].tripid); */
+					var i = 0;
+					  $.each(this, function(k, v) {						    
+					    $('#list21').append('<tr><td>'+data[i].time+'</td><td>'+data[i].place+'</td><td>'+data[i].category+'</td></tr>')
+					    i = i+1;
+					  });
+					});
+            }
+
+        },
+		
+	}).complete(function(){  });
+  </script>
+</html>
