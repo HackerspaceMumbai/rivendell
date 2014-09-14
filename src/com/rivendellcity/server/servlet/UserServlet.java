@@ -99,11 +99,11 @@ public class UserServlet extends HttpServlet {
 			Gson gson = new Gson();
 			UserResource user = gson.fromJson(data, UserResource.class);
 			try {
-				if(req.getSession(false) == null) {
+//				if(req.getSession(false) == null) {
 					if (!user.login(req.getSession())) {
 						resp.sendError(401, "could not authorize user");
 					}
-				}
+//				}
 			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

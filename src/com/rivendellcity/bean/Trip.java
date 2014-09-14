@@ -12,6 +12,8 @@ public class Trip implements Serializable {
 	private String driverid;
 	private GeoPt origin;
 	private GeoPt destination;
+	private String origin_string;
+	private String destination_string;
 	private Date time;
 	private ArrayList<String> riderid;
 	
@@ -40,6 +42,18 @@ public class Trip implements Serializable {
 		this.destination = destination;
 	}
 	
+	public String getOrigin_string() {
+		return origin_string;
+	}
+	public void setOrigin_string(String origin_string) {
+		this.origin_string = origin_string;
+	}
+	public String getDestination_string() {
+		return destination_string;
+	}
+	public void setDestination_string(String destination_string) {
+		this.destination_string = destination_string;
+	}
 	public Date getTime() {
 		return time;
 	}

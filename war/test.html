@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Contact Sync</title>
+<title>Rivendell City</title>
 <script src="jquery-2.1.0.min.js"></script>
 </head>
 <body>
@@ -13,8 +13,8 @@
 	<button id="logout">logout</button>
 	<button id="create_contact">Create driver</button>	
 	<button id="contact_retrieve">Retrieve trips on 14th sept</button>
-	<button id="cross_domain_test_add_user">cross_domain_test_add_user</button>
-	<button id="cross_domain_test_retrieve_user">cross_domain_test_retrieve_user</button>
+	<button id="add_rider">Add Rider to 14th at 4:30</button>
+	<button id="confirm_rider">confirm_rider</button>
 	
 	<script>
 	$('#user_create').click(function() { 
@@ -52,7 +52,7 @@
 		}).complete(function(){  });
 	});
 	$('#user_retrieve').click(function() {
-		var data = "{\"email\":\"email@contactsync.com\", \"password\":\"password\"}";
+		var data = "{\"email\":\"email@email.com\", \"password\":\"password\"}";
 		$.ajax({
 			type: 		"post",
 			url: 		"user",
@@ -94,7 +94,7 @@
 	});
 
 	$('#create_contact').click(function() { 
-		var data = "{\"origin\":\"19.0782254,72.9073242\", \"destination\":\"19.022393,72.855665\",\"day\":\"14\",\"month\":\"8\",\"year\":\"2014\",\"hour\":\"8\",\"min\":\"0\",\"sec\":\"00\"}";
+		var data = "{\"origin\":\"19.0782254,72.9073242, Ghatkopar East\", \"destination\":\"19.022393,72.855665,VJTI Matunga\",\"day\":\"14\",\"month\":\"8\",\"year\":\"2014\",\"hour\":\"8\",\"min\":\"0\",\"sec\":\"00\"}";
 		$.ajax({
 			type: 		"post",
 			url: 		"trip",
@@ -114,7 +114,7 @@
 		var data = "{\"day\":\"14\",\"month\":\"8\",\"year\":\"2014\",\"hour\":\"00\",\"min\":\"00\",\"sec\":\"00\"}";
 		$.ajax({
 			type: 		"post",
-			url: 		"driver",
+			url: 		"trip",
 			data: 		{actn:'get', data:data},
 	        mimeType: 'application/json',
 			success: 	function(data) {
@@ -125,11 +125,11 @@
 		}).complete(function(){  });
 	});
 
-	$('#cross_domain_test_add_user').click(function() { 
-		var data = "{\"email\":\"email@localhosttowebserver.com\", \"password\":\"password\", \"firstname\":\"cross\", \"lastname\":\"domain\"}";
+	$('#add_rider').click(function() { 
+		var data = "{\"tripid\":\"ag5yaXZlbmRlbGwtY2l0eXIqCxIEdXNlciIPZW1haWxAZW1haWwuY29tDAsSBHRyaXAYgICAgICAwAgM\", \"driverid\":\"ag5yaXZlbmRlbGwtY2l0eXIZCxIEdXNlciIPZW1haWxAZW1haWwuY29tDA\"}";
 		$.ajax({
 			type: 		"post",
-			url: 		"https://contactsync-leo.appspot.com/user",
+			url: 		"/request",
 			data: 		{actn:'create', data:data},
 			/* success: 	function(code) {
 						alert(code.responseText);
@@ -145,13 +145,12 @@
             }
 		}).complete(function(){  });
 	});
-	$('#cross_domain_test_retrieve_user').click(function() {
-		var data = "{\"email\":\"email@localhosttowebserver.com\", \"password\":\"password\"}";
+	$('#confirm_rider').click(function() {
+		var data = "{\"requestid\":\"ag5yaXZlbmRlbGwtY2l0eXJiCxIMcmVxdWVzdF9yaWRlIlBhZzV5YVhabGJtUmxiR3d0WTJsMGVYSXFDeElFZFhObGNpSVBaVzFoYVd4QVpXMWhhV3d1WTI5dERBc1NCSFJ5YVhBWWdJQ0FnSUNBd0FnTQw\"}";
 		$.ajax({
 			type: 		"post",
-			url: 		"https://contactsync-leo.appspot.com/user",
-			data: 		{actn:'get', data: data},
-	        mimeType: 'application/json',
+			url: 		"/request",
+			data: 		{actn:'accept_request', data: data},
 			success: 	function(data) {
 			}, 
 			error: function(jqXHR, textStatus, errorThrown){

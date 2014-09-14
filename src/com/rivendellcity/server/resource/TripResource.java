@@ -35,6 +35,8 @@ public class TripResource extends Trip {
 		tripdbo.setProperty(Constants.ORIGIN, this.getOrigin());
 		tripdbo.setProperty(Constants.DESTINATION, this.getDestination());
 		tripdbo.setProperty(Constants.TIME, this.getTime());
+		tripdbo.setProperty("origin_string", this.getOrigin_string());
+		tripdbo.setProperty("destination_string", this.getDestination_string());
 		
 		datastore.put(tripdbo);
 		
@@ -66,6 +68,8 @@ public class TripResource extends Trip {
 			GeoPt origin = ((GeoPt)result.getProperty("origin"));			
 			GeoPt destination = ((GeoPt)result.getProperty("destination"));
 			Date time = (Date) result.getProperty("time");
+			String origin_string = (String) result.getProperty("origin_string");
+			String destination_string = (String) result.getProperty("destination_string");
 			ArrayList<String> riderid = (ArrayList<String>) result.getProperty("riderid");
 			
 			d.setDestination(destination);
@@ -73,6 +77,8 @@ public class TripResource extends Trip {
 			d.setTime(time);
 			d.setDriverid(driverid);
 			d.setRiderid(riderid);
+			d.setOrigin_string(origin_string);
+			d.setDestination_string(destination_string);
 			d.setTripid(KeyFactory.keyToString(result.getKey()));
 			list.add(d);
 			}
@@ -85,6 +91,7 @@ public class TripResource extends Trip {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity tripdbo = datastore.get(KeyFactory.stringToKey(tripid));
 		ArrayList<String> rider = (ArrayList<String>) tripdbo.getProperty(Constants.RIDERID);
+ 		if(rider == null) rider = new ArrayList<String>(); 
 		rider.add(riderid);
 		tripdbo.setProperty(Constants.RIDERID, rider);
 		datastore.put(tripdbo);

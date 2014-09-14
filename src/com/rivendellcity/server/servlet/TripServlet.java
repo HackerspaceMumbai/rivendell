@@ -43,7 +43,10 @@ public class TripServlet extends HttpServlet {
 			String dest[] = jsonobj.get("destination").getAsString().split("[,]");
 			GeoPt origin = new GeoPt(Float.parseFloat(orig[0]), Float.parseFloat(orig[1]));			
 			GeoPt destination = new GeoPt(Float.parseFloat(dest[0]), Float.parseFloat(dest[1]));
+			String origin_string = orig[2];
+			String destination_string = dest[2];
 			HttpSession session = req.getSession(false);
+			
 			if(session != null) {
 				UserResource user = (UserResource) session.getAttribute("user");
 				String json = new Gson().toJson(user);
@@ -54,6 +57,8 @@ public class TripServlet extends HttpServlet {
 				driver.setOrigin(origin);
 				driver.setDestination(destination);
 				driver.setTime(date);
+				driver.setOrigin_string(origin_string);
+				driver.setDestination_string(destination_string);
 				driver.create(email);
 				resp.sendError(201, "trip added successfully");
 				
