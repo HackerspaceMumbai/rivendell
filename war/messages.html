@@ -53,10 +53,8 @@
 			<div class="control">
 				<h2 style="color:green"><b>Requests For You</b></h2>
 			</div>
-			<div class="control">
-				<label class="control-label">User $(user.name) has sent you a request for your car pool on $(pool.date) from $(pool.origin) to $(pool.dest). Accept?</label>
-				<button class="btn btn-success btn-large pull-center">Yes</button>
-				<button class="btn btn-danger btn-large pull-center">No</button>
+			<div class="control" id="req">
+
 			</div>
 		</div>
     </div>
@@ -66,7 +64,7 @@
 				<h2 style="color:green"><b>Confirmations</b></h2>
 			</div>
 			<div class="control">
-				<label class="control-label">User $(user.name) has confirmed for your car pool on $(pool.date) from $(pool.origin) to $(pool.dest).</label>
+				<label class="control-label">you haven't pooled with anyone yet. visit the "Join car pool" tab.</label>
 			</div>
 		</div>
 	</div>
@@ -87,4 +85,44 @@
     </footer>
   </body>
   <script src="jquery-2.1.0.min.js"></script>
+  <script>
+  
+  $('#req').delegate('.choice', 'click', function() {
+		var var1 = $(this).attr("attr");
+		if(var1==='yes'){
+			alert("Your car pool has been scheduled.")	
+		}
+		
+
+});
+
+  
+  $.ajax({
+		type: 		"post",
+		url: 		"request",
+		data: 		{actn:'get_req_messages'},
+      mimeType: 	'application/json',
+		success: 	function(data) {
+						}, 
+		statusCode : {
+          200 : function(data, textStatus, jqXHR) {
+				/* alert("200: " + data) */				
+				/* $('#list21').append(table); */
+				$.each(data, function(k,v) {
+					/* <tr><td></td></tr> */
+					/* alert("data of 0 "+data[0].tripid); */
+					var i = 0;
+					  $.each(this, function(k, v) {						    
+					    /* $('#list21').append('<tr><td>'+data[i].time+'</td><td>'+data[i].place+'</td><td>'+data[i].category+'</td></tr>') */
+					    $('#req').append('<label class="control-label">You have a request for your car pool on Accept?</label>');
+					    $('#req').append('<button class="btn btn-success btn-large pull-center choice" attr="yes">Yes</button><button class="btn btn-danger btn-large pull-center choice" attr="no">No</button>');
+					    i = i+1;
+					  });
+					});
+          }
+
+      },
+		
+	}).complete(function(){  });
+  </script>
 </html>

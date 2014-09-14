@@ -109,12 +109,12 @@
 							}, 
 			statusCode : {
                 200 : function(data, textStatus, jqXHR) {
-					/* alert("200: " + data) */
+					alert("200: " + data)
 					var table = "<tr><th>Date</th><th>Origin</th><th>Destination</th><th>Ask</th><th></th></tr>";
 					$('#list22').append(table);
 					$.each(data, function(k,v) {
 						/* <tr><td></td></tr> */
-						/* alert("data of 0 "+data[0].tripid); */
+						alert("data of 0 "+data[0].tripid);
 						var i = 0;
 						  $.each(this, function(k, v) {						    
 							  var ti = new String();
